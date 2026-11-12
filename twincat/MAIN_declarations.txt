@@ -1,0 +1,13 @@
+PROGRAM MAIN
+VAR
+    // Deze 3 ingangen worden geschreven door de Python-applicatie.
+    bStartButton : BOOL := FALSE;
+    bStopButton  : BOOL := FALSE;
+    bSensor      : BOOL := FALSE;
+
+    // Deze uitgang wordt geschreven door de PLC-code en gelezen door Python.
+    bMotor       : BOOL := FALSE;
+
+    // Bewijst dat MAIN-cycli echt uitgevoerd worden.
+    nCycleCounter : UDINT := 0;
+END_VAR

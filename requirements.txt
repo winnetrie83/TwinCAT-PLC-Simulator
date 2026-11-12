@@ -1,0 +1,2 @@
+pyads==3.6.0
+pywebview==6.2.1

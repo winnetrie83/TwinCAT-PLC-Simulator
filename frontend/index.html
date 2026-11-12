@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PLC Simulation Lab — Fase 1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="masthead">
+      <div class="logo" aria-hidden="true"><span>PLC</span></div>
+      <div class="brand"><div class="eyebrow">TWINCAT · INDUSTRIAL AUTOMATION</div><h1>Simulation Lab <span>01</span></h1><div class="subtitle">ADS-connectiviteit &amp; I/O-proefopstelling</div></div>
+      <div class="version" id="modeTag">KLAAR VOOR TEST</div>
+    </header>
+
+    <div id="alert" class="alert" role="alert" hidden></div>
+
+    <main class="layout">
+      <section class="visual-panel panel">
+        <div class="panel-heading"><div><div class="section-kicker">01 / TESTBENCH</div><h2>Transportband — I/O-test</h2></div><span class="phase-chip">FASE 1 · GEEN PAKKETFYSICA</span></div>
+        <p class="intro">Test of de PLC-uitgang een virtuele motor aandrijft. De lichtsluis is in deze fase nog handmatig te bedienen.</p>
+        <div class="conveyor-scene" id="conveyorScene">
+          <div class="upper-label"><span>CONVEYOR A-01</span><span>PLC OUTPUT / MOTOR</span></div>
+          <div class="beacon" id="motorBeacon"><i></i><span id="beaconLabel">MOTOR OFF</span></div>
+          <div class="sensor-line"><div class="sensor-emitter"></div><div class="sensor-beam"></div><div class="sensor-receiver"></div><span>LS-01</span></div>
+          <div class="belt-assembly">
+            <div class="belt-track"><div class="belt-pattern"></div></div>
+            <div class="roller roller-left"></div><div class="roller roller-right"></div>
+            <div class="foot left"></div><div class="foot right"></div>
+          </div>
+          <div class="motor-drive" aria-hidden="true"><div class="motor-inner">M</div><div class="drive-line"></div></div>
+          <div class="floor"></div>
+        </div>
+        <div class="readout-grid">
+          <div class="readout"><span class="readout-name">PLC motoruitgang</span><strong id="motorValue">FALSE</strong><small>MAIN.bMotor</small></div>
+          <div class="readout"><span class="readout-name">Sensoringang</span><strong id="sensorValue">FALSE</strong><small>MAIN.bSensor</small></div>
+          <div class="readout"><span class="readout-name">PLC-cyclusteller</span><strong id="cycleValue">—</strong><small>MAIN.nCycleCounter</small></div>
+        </div>
+      </section>
+
+      <aside class="controls-column">
+        <section class="panel connection-panel">
+          <div class="section-kicker">02 / ADS-LINK</div><h2>Verbinding</h2>
+          <div class="connection-badge" id="connectionBadge"><span class="status-dot"></span><span id="connectionLabel">Niet verbonden</span></div>
+          <div class="detail-row"><span>Doel (AMS / poort)</span><code id="targetValue">—</code></div>
+          <div class="detail-row"><span>Communicatie</span><strong id="communicationValue">—</strong></div>
+          <div class="connection-buttons"><button id="connectButton" class="btn primary">Verbinden</button><button id="disconnectButton" class="btn ghost">Verbreken</button></div>
+        </section>
+        <section class="panel control-panel">
+          <div class="section-kicker">03 / VIRTUELE INGANGEN</div><h2>Bedieningspaneel</h2>
+          <div class="control-buttons"><button id="startButton" class="btn start"><span class="icon-play">▶</span> START</button><button id="stopButton" class="btn stop"><span class="icon-stop">■</span> STOP</button></div>
+          <label class="sensor-switch"><span class="switch-label"><b>Lichtsluis LS-01</b><small>Sensor onderbroken</small></span><span class="switch-wrap"><input id="sensorToggle" type="checkbox"><span class="switch-track"></span></span></label>
+          <p class="notice">START en STOP zijn korte PLC-ingangspulsen. De motor blijft alleen draaien als jouw TwinCAT-code dat bepaalt.</p>
+        </section>
+        <section class="panel io-panel"><div class="section-kicker">04 / LIVE VARIABLES</div><h2>PLC I/O</h2>
+          <div class="io-row"><span><i class="led" id="startLed"></i>bStartButton</span><code id="startValue">FALSE</code></div>
+          <div class="io-row"><span><i class="led" id="stopLed"></i>bStopButton</span><code id="stopValue">FALSE</code></div>
+          <div class="io-row"><span><i class="led" id="sensorLed"></i>bSensor</span><code id="sensorSmallValue">FALSE</code></div>
+          <div class="io-row"><span><i class="led" id="motorLed"></i>bMotor</span><code id="motorSmallValue">FALSE</code></div>
+        </section>
+      </aside>
+    </main>
+    <footer><span>Fase 1: ADS ↔ Python ↔ GUI</span><span id="footerStatus">Wachten op PyWebView…</span></footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

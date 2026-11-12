@@ -1,0 +1,12 @@
+{
+  "ams_net_id": "127.0.0.1.1.1",
+  "ads_port": 851,
+  "pulse_ms": 250,
+  "symbols": {
+    "start": "MAIN.bStartButton",
+    "stop": "MAIN.bStopButton",
+    "sensor": "MAIN.bSensor",
+    "motor": "MAIN.bMotor",
+    "counter": "MAIN.nCycleCounter"
+  }
+}
