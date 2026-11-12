@@ -20,3 +20,13 @@ All rights not expressly granted are reserved by the copyright holder. The copyr
 The software is provided AS IS, without warranty, to the extent permitted by applicable law. Nothing in this license restricts rights that cannot legally be excluded.
 
 Third-party components remain subject to their respective licenses.
+
+
+
+## Trademark Disclaimer
+
+This software is an independent educational project
+and is not affiliated with, sponsored by, or endorsed
+by Beckhoff Automation.
+
+TwinCAT is a trademark of Beckhoff Automation.

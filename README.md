@@ -157,3 +157,14 @@ De handmatige lichtsluis vervangen door echte **pakketpositie-simulatie**, een t
 - pyads – Windows-installatie: https://pyads.readthedocs.io/en/latest/installation.html
 - pyads op PyPI: https://pypi.org/project/pyads/
 - pywebview op PyPI: https://pypi.org/project/pywebview/
+
+
+
+## Disclaimer
+
+This is an independent educational project and is not
+affiliated with or endorsed by Beckhoff Automation.
+
+TwinCAT is a trademark of Beckhoff Automation.
+All trademarks and product names belong to their
+respective owners.
