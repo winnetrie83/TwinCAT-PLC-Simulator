@@ -1,1 +1,1 @@
-"""PLC Simulation Lab backend package."""
+"""PLC Simulation Lab core."""

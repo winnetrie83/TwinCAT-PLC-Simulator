@@ -5,8 +5,11 @@
   "symbols": {
     "start": "MAIN.bStartButton",
     "stop": "MAIN.bStopButton",
-    "sensor": "MAIN.bSensor",
-    "motor": "MAIN.bMotor",
+    "sensor_entry": "MAIN.bSensorEntry",
+    "sensor_exit": "MAIN.bSensorExit",
+    "reject_type": "MAIN.bRejectType",
+    "motor": "MAIN.bConveyorMotor",
+    "diverter": "MAIN.bDiverter",
     "counter": "MAIN.nCycleCounter"
   }
 }

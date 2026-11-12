@@ -1,9 +1,8 @@
 @echo off
 cd /d "%~dp0"
-where py >nul 2>&1
-if not errorlevel 1 (
-  py -3 app.py --cli
+if exist ".venv\Scripts\python.exe" (
+  ".venv\Scripts\python.exe" app.py --demo --cli
 ) else (
-  python app.py --cli
+  py -3 app.py --demo --cli
 )
-pause
+if errorlevel 1 pause

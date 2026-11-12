@@ -1,13 +1,16 @@
 PROGRAM MAIN
 VAR
-    // Deze 3 ingangen worden geschreven door de Python-applicatie.
-    bStartButton : BOOL := FALSE;
-    bStopButton  : BOOL := FALSE;
-    bSensor      : BOOL := FALSE;
+    // Ingangen: uitsluitend onze Python-simulator schrijft deze symbolen.
+    bStartButton     : BOOL := FALSE;
+    bStopButton      : BOOL := FALSE;
+    bSensorEntry     : BOOL := FALSE; // LS-01 onderbroken
+    bSensorExit      : BOOL := FALSE; // LS-02 onderbroken
+    bRejectType      : BOOL := FALSE; // oranje pakket aan LS-01
 
-    // Deze uitgang wordt geschreven door de PLC-code en gelezen door Python.
-    bMotor       : BOOL := FALSE;
+    // Uitgangen: uitsluitend het PLC-programma bestuurt deze.
+    bConveyorMotor   : BOOL := FALSE;
+    bDiverter        : BOOL := FALSE;
 
-    // Bewijst dat MAIN-cycli echt uitgevoerd worden.
-    nCycleCounter : UDINT := 0;
+    // Diagnostiek
+    nCycleCounter    : UDINT := 0;
 END_VAR
