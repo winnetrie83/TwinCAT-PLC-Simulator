@@ -1,0 +1,16 @@
+PLC SIMULATION LAB — v0.9.1 ANIMATION + VIEWPORT HOTFIX
+=======================================================
+Vereist: werkende v0.9-installatie. Dit is een kleine patch-ZIP, geen volledige installatie.
+
+1. Sluit PLC Simulation Lab af.
+2. Maak een back-up van jouw bestaande projectmap.
+3. Pak deze ZIP uit in de ROOT van het project en overschrijf frontend/custom.js, frontend/custom.css, docs/CHANGELOG.md en docs/CUSTOM_SIMULATOR_NL.md.
+4. Start start_demo.cmd; open Custom Simulator.
+5. Test lopende band, meerdere pakketten, zoom met muiswiel, pannen met slepen over lege ruimte en Reset.
+6. Test desgewenst start_live.cmd met eigen TwinCAT UMRT.
+
+Niet gewijzigd: app.py, backend, README.md (inclusief disclaimer), License.md, config/settings.json, verbindingsprofielen en persoonlijke opgeslagen simulatieprojecten.
+GitHub blijft ongewijzigd.
+
+De Python-regressietests (15/15) en JS-syntaxcontrole zijn geslaagd.
+Een volledige PyWebView GUI-test en de echte UMRT-integratie zijn niet uitgevoerd.

@@ -1,0 +1,29 @@
+PLC SIMULATION LAB — v0.8 UPDATE (over bestaande v0.7)
+
+Basis: https://github.com/winnetrie83/TwinCAT-PLC-Simulator
+Commit: cd4735f09d3a8ebd947bbca0ad80bdeffe2b2546
+
+1. Bewaar een back-up van je huidige repositorymap.
+2. Pak deze ZIP uit IN JE BESTAANDE PROJECTMAP, met behoud van de mappenstructuur.
+3. Laat de bijgeleverde app.py de bestaande app.py vervangen.
+4. De README.md, License.md, settings.json en bestaande TwinCAT-oefeningen worden NIET aangepast.
+5. Start met je bestaande start_demo.cmd of start_live.cmd.
+6. Ga in het hoofdmenu naar Custom Simulator.
+7. Test zonder PLC met start_demo.cmd en gebruik de groene drukknop (motor schakelt).
+8. Voor ADS: configureer per component de BOOL-symbolen en zorg dat ze in de PLC bestaan.
+9. Tests: py -3 -m unittest discover -s tests -v
+
+De applicatie genereert bij opstart tijdelijk frontend/_index_v08_generated.html
+om de Custom Simulator toe te voegen zonder je originele index.html te overschrijven.
+De tijdelijke file wordt normaal bij afsluiten verwijderd.
+
+Projectopslag: %LOCALAPPDATA%\PLC-Simulation-Lab\projects\*.json
+Verbindingsprofielen blijven ongewijzigd.
+
+LET OP: de ZIP bevat ALLEEN gewijzigde/nieuwe bestanden en moet over de exacte
+repositorybasis worden uitgepakt. Het is geen zelfstandig uitvoerbare release.
+Gebruik deze versie niet op een productie-PLC.
+
+Optioneel: nadat je de inhoud van docs/CHANGELOG.md gecontroleerd hebt, kun je
+oude UPDATE_*.md- en HOME_SCREEN_UPDATE_NL.md-bestanden handmatig archiveren.
+Dit updatepakket verwijdert geen bestaande documentatie automatisch.

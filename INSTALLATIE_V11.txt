@@ -1,0 +1,19 @@
+PLC SIMULATION LAB — v1.1 PATCH (BOVEN OP v1.0.1)
+================================================
+
+1. Sluit de toepassing volledig af.
+2. Maak een back-up van je huidige werkende v1.0.1-map.
+3. Pak deze ZIP uit over de projectroot. Laat de files uit deze ZIP overschrijven.
+4. Start start_demo.cmd en test de bestaande 3 oefeningen en de Custom Simulator.
+5. Open onderaan rechts 'PLC I/O-mapping & oefeningtests'.
+6. Voor echte TwinCAT-tests: start_live.cmd en verbind met een lokale onderwijs-runtime.
+
+Niet overschreven: README.md (inclusief disclaimer), License.md,
+config/settings.json, gebruikersprofielen, opgeslagen Custom-projecten.
+Alle documentatie-updates staan in docs/CHANGELOG.md. Geen nieuwe UPDATE_Vxx-bestanden.
+
+LET OP: deze ZIP bevat enkel gewijzigde/toegevoegde bestanden, niet de
+volledige applicatie. Installeren boven op v1.0.1 is verplicht.
+De tests bedienen virtuele PLC-ingangen. Gebruik nooit productiehardware.
+
+GitHub is NIET gewijzigd.

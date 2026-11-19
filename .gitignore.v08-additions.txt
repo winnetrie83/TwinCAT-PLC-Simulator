@@ -1,0 +1,4 @@
+# Voeg deze patronen toe aan je bestaande .gitignore:
+frontend/_index_v08_generated.html
+__pycache__/
+*.pyc

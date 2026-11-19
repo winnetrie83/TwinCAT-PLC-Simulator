@@ -1,0 +1,27 @@
+PLC SIMULATION LAB — v0.9 Advanced 2D UPDATE
+==============================================
+Basis: bestaande v0.8.1-installatie. Dit is een UPDATE-ZIP, geen volledige installatie.
+
+1. Sluit de applicatie volledig af (ook de demo/UMRT-verbinding).
+2. Maak eerst een back-up van je projectmap.
+3. Pak deze ZIP uit IN DE ROOT van de bestaande PLC Simulation Lab-map.
+   Sta het overschrijven van app.py en de vermelde bestanden toe.
+4. De bestaande README.md, License.md, config/settings.json, persoonlijke
+   profielen, eigen JSON-projecten en TwinCAT-bestanden worden NIET overschreven.
+5. Start start_demo.cmd -> Custom Simulator -> Start / Verbinden.
+6. Klik de groene drukknop om de motor in demo aan/uit te zetten.
+7. Test invoerbakken, sensor en opvangbak. Stop om elementen te verplaatsen.
+
+Bij een echte TwinCAT-test: start_live.cmd, selecteer juiste profiel en zorg
+voor een PLC-programma met de overeenkomstige BOOL-symbolen. De simulator
+vervangt GEEN PLC-besturingslogica.
+
+Het centrale changelogbestand is docs/CHANGELOG.md. Oude losse UPDATE_*.md
+bestanden mogen na controle handmatig worden verwijderd; deze update wist
+niets automatisch om eigen wijzigingen niet te verliezen.
+
+TESTS (Windows CMD):
+  py -3 -m unittest discover -s tests -p test_custom_engine.py -v
+
+Dit pakket wijzigt GitHub niet. Regressietests + JS syntax OK; Windows
+GUI en echte TwinCAT UMRT moeten nog lokaal worden getest.

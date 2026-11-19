@@ -1,0 +1,23 @@
+.module-tool-launch{position:fixed;right:20px;bottom:16px;z-index:1500;box-shadow:0 4px 18px #0009;max-width:calc(100% - 40px);}
+.module-tool-overlay[hidden]{display:none!important}
+.module-tool-overlay{position:fixed;inset:0;z-index:2400;display:flex;align-items:center;justify-content:center;background:rgba(4,12,24,.85);padding:18px;overflow:auto}
+.module-tool-panel{box-sizing:border-box;width:min(1120px,100%);max-height:94vh;overflow:auto;border-radius:18px;background:#111f32;color:#dce8f4;border:1px solid #41546c;padding:22px;box-shadow:0 25px 65px #0008}
+.module-tool-panel header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.module-tool-panel h2,.module-tool-panel h3{margin:7px 0 12px;color:#e8f4ff}
+.module-tool-panel p{color:#abc0d5;line-height:1.5}
+.module-tool-pick{display:flex;align-items:center;gap:14px;margin:18px 0 10px}
+.module-tool-panel select,.module-tool-panel input{background:#0c1829;color:#f1f5f9;border:1px solid #53667d;border-radius:7px;padding:8px;min-width:0;box-sizing:border-box}
+.module-tool-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px}
+.module-tool-fields{display:grid;grid-template-columns:1fr;gap:8px}
+.module-tool-field{display:grid;grid-template-columns:minmax(105px, .7fr) minmax(0,1.3fr);gap:12px;align-items:center;font-size:13px}
+.module-tool-field input{width:100%;font:inherit}
+.module-tool-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.module-tool-info{margin-top:18px;padding:12px;border-radius:8px;background:#1a2c41;color:#bfdbfe;overflow-wrap:anywhere}
+.module-tool-info.error{color:#fecaca;background:#48222a}
+.module-tool-results{margin-top:12px;display:grid;gap:7px}
+.module-tool-result{display:flex;gap:12px;align-items:start;background:#1a2d42;border-radius:8px;padding:10px}
+.module-tool-result strong{font-size:21px}.module-tool-result .pass{color:#86efac}.module-tool-result .fail{color:#fda4af}
+.module-tool-result small{display:block;color:#b0c8dd;margin-top:4px}
+.module-tool-warning{font-size:12px}
+@media(max-width:750px){.module-tool-columns{grid-template-columns:1fr}.module-tool-panel{padding:14px}}
+.custom-editor-actions{display:flex;gap:10px;margin:5px 0 12px;flex-wrap:wrap}

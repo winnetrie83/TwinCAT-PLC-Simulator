@@ -1,0 +1,25 @@
+PLC Simulation Lab v1.0 — updatepatch op v0.9.1
+====================================================
+
+1. Maak eerst een back-up van de volledige bestaande projectmap.
+2. Sluit de applicatie, ook achtergrondvensters.
+3. Pak deze ZIP UIT in de projectroot van de bestaande v0.9.1 installatie.
+4. Laat app.py en frontend/custom.js vervangen.
+5. Start start_demo.cmd en selecteer 'Drukvat & pompen'.
+6. Klik Verbinden > START. Bekijk het niveau en de pompcommando's.
+7. Test daarna de Live-modus in TwinCAT met de variabelen uit docs/TANK_SIMULATOR_NL.md.
+
+Het pakket laat je README.md, disclaimer, License.md, config/settings.json,
+bestaande projecten en TwinCAT programma's intact.
+De huidige repository op GitHub is niet gewijzigd.
+
+Deze patch is geen zelfstandige installatie. De basismap moet AL het oorspronkelijke
+bronmateriaal bevatten. Gebruik de bestaande start_demo.cmd en start_live.cmd.
+
+Opgelet: het ST-bestand in docs/ is een DOCENTVOORBEELD. Niet als oplossing
+uitdelen aan studenten. Lees voor gebruik de veiligheidswaarschuwingen in docs.
+
+Automatische tests:
+  py -3 -m unittest discover -s tests -v
+
+Voor bekende beperkingen: docs/CHANGELOG.md

@@ -1,0 +1,21 @@
+PLC SIMULATION LAB v1.0.1 — Correctie drukvat
+
+BASE: de werkende lokale v1.0, inclusief alle eerdere patches.
+Deze ZIP is een overlay, geen complete installatie.
+
+1. Sluit PLC Simulation Lab.
+2. Maak een reservekopie van de volledige projectmap.
+3. Pak de inhoud van deze ZIP uit IN DE PROJECTROOT (naast app.py).
+4. Kies bestanden vervangen wanneer gevraagd.
+5. Start start_demo.cmd en open Drukvat & pompen.
+6. Klik Verbinden en START. Het vat moet op 80.0% blijven staan.
+7. Vink in DEMO desgewenst automatisch leegpompen aan; dan schakelt het vat bij 80% naar afvoer en bij 25% terug naar vullen.
+8. Voor LIVE geldt: de PLC beslist zelf. De simulator stopt de pomp niet automatisch op 80%.
+
+De bestaande README, disclaimer, instellingen, profielen, projectbestanden en bronbestanden uit de repository worden NIET in de ZIP overschreven (behalve de expliciet opgenomen app.py).
+Er is niets naar GitHub geschreven.
+
+Tests (vanaf de projectroot):
+  py -3 -m unittest discover -s tests -p test_tank.py -v
+
+Deze patch is getest met gesimuleerde ADS-antwoorden en lokale unit tests; niet met een echte Windows/UMRT runtime.

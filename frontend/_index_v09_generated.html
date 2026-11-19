@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PLC Simulation Lab — Simulaties</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="reject-conveyor.css">
+  <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="garage.css">
+  <link rel="stylesheet" href="connection-profiles.css">
+  <link rel="stylesheet" href="symbol-diagnostics.css">
+  <link rel="stylesheet" href="custom.css">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="identity">
+        <div class="symbol">PL<span>↗</span></div>
+        <div><div class="overline">INDUSTRIAL TRAINING ENVIRONMENT</div><h1>PLC Simulation <em>Lab</em></h1><div class="subhead">Visuele PLC-oefeningen · TwinCAT ADS</div></div>
+      </div>
+      <div class="topright"><span class="vchip">BETA 0.7</span><div id="connectionBadge" class="connection-badge"><i></i><span id="connectionLabel">Niet verbonden</span></div></div>
+    </header>
+    <section id="homeScreen" class="home-screen" aria-label="Kies een simulatie">
+      <div class="home-intro">
+        <div class="overline">WELCOME / SIMULATION LIBRARY</div>
+        <h2>Kies je <span>installatie</span></h2>
+        <p>Oefen met een virtuele installatie die reageert op jouw PLC-programma. Selecteer een simulatie om sensoren en actuatoren via TwinCAT ADS te besturen.</p>
+      </div>
+      <div class="home-cards">
+        <article class="sim-card available">
+          <div class="sim-image conveyor-art" aria-hidden="true"><div class="art-belt"><span></span><span></span><span></span></div><div class="art-branch"></div><div class="art-box one"></div><div class="art-box two"></div><div class="art-sensor"></div></div>
+          <div class="sim-card-body"><div class="sim-card-top"><span class="sim-category">01 / MATERIAL HANDLING</span><span class="sim-status ready">Beschikbaar</span></div>
+          <h3>Transportband &amp; sortering</h3><p>Stuur pakketten over de hoofdband en sorteer via een loodrechte reject-band. Drie lichtsluizen en een diverter.</p>
+          <button id="openConveyor" class="sim-launch" type="button">Open simulatie <span aria-hidden="true">→</span></button></div>
+        </article>
+        <article class="sim-card available">
+          <div class="sim-image gate-art" aria-hidden="true"><div class="art-building"><div class="art-door"></div></div><div class="art-ground"></div></div>
+          <div class="sim-card-body"><div class="sim-card-top"><span class="sim-category">02 / BUILDING AUTOMATION</span><span class="sim-status ready">Beschikbaar</span></div>
+          <h3>Garagepoort</h3><p>Programmeer een automatische poort met één druktoets, twee eindeloopcontacten en motorbesturing.</p>
+          <button id="openGarage" class="sim-launch" type="button">Open simulatie <span aria-hidden="true">→</span></button></div>
+        </article>
+        <article class="sim-card unavailable">
+          <div class="sim-image vessel-art" aria-hidden="true"><div class="art-vessel"><div class="art-liquid"></div></div><div class="art-pipe left"></div><div class="art-pipe right"></div><div class="art-pump left"></div><div class="art-pump right"></div></div>
+          <div class="sim-card-body"><div class="sim-card-top"><span class="sim-category">03 / PROCESS CONTROL</span><span class="sim-status planned">Gepland</span></div>
+          <h3>Drukvat &amp; pompen</h3><p>Simuleer druk en vloeistofniveau met twee pompen, sensoren en alarmtoestanden.</p>
+          <button class="sim-launch" disabled type="button">Binnenkort beschikbaar</button></div>
+        </article>
+      </div>
+      <div class="profile-home panel"><div><strong>PLC-verbindingsprofiel</strong><span>Automatisch het laatst gebruikte doel, ook bij de garagepoort.</span></div>
+       <div class="profile-line"><select id="homeProfileSelect" aria-label="Selecteer PLC-profiel"></select><button id="homeProfileEdit" class="btn ghost" type="button">Edit</button></div></div>
+      <div class="home-footer"><div><strong>Ontwikkeld voor PLC-onderwijs</strong><span>Alle besturingslogica blijft in TwinCAT; deze applicatie simuleert de installatie.</span></div><div id="homeRuntime" class="home-runtime">Kies een module om te beginnen</div></div>
+    </section>
+    <div id="errorMessage" class="alert" role="alert" hidden></div>
+    <main class="workspace" id="simulationWorkspace" hidden>
+      <section class="left-side">
+        <section class="panel stage-panel">
+          <div class="section-title"><div><button id="backHome" class="back-home" type="button">← Alle simulaties</button><div class="overline">INSTALLATIE 01 / SORTER CONVEYOR</div><h2>Transportband <span class="h2muted">/ Sortering</span></h2></div><span id="modeTag" class="mode-tag">Wachten...</span></div>
+          <div class="stage-description">Blauwe pakketten gaan rechtdoor. Oranje pakketten worden via de diverter naar de loodrechte afvoerband gestuurd; LS-03 bevestigt hun aankomst.</div>
+          <div class="conveyor-stage" id="conveyorStage" aria-label="Interactieve transportband met loodrechte afvoerband">
+            <div class="stage-grid"></div>
+            <div class="stage-label stage-label-left">ZONE A · AANVOER</div>
+            <div class="stage-label stage-label-right">ZONE B · SORTERING</div>
+            <div class="motor-chip"><span id="motorMiniLed" class="circle-led"></span><span id="motorMiniText">MOTOR UIT</span></div>
+            <div class="sensor-assembly first" id="entryAssembly"><div class="sensor-head"></div><div class="sensor-beam"></div><div class="sensor-head"></div><strong>LS-01</strong></div>
+            <div class="sensor-assembly second" id="exitAssembly"><div class="sensor-head"></div><div class="sensor-beam"></div><div class="sensor-head"></div><strong>LS-02</strong></div>
+            <!-- The perpendicular reject conveyor is aligned with DIVERTER_X=0.66. -->
+            <div class="reject-conveyor" id="rejectConveyor" aria-label="Afvoerband naar beneden">
+              <div class="reject-track"><div class="reject-texture"></div></div>
+              <div class="reject-roller reject-roller-top"></div>
+              <div class="reject-roller reject-roller-bottom"></div>
+              <span class="reject-direction">↓ AFVOER</span>
+            </div>
+            <div class="belt-frame">
+              <div class="belt-track" id="beltTrack"><div class="belt-texture"></div></div>
+              <div class="package-layer" id="packageLayer"></div>
+              <div class="roller roller-left"></div><div class="roller roller-right"></div>
+            </div>
+            <div class="reject-package-layer" id="rejectPackageLayer"></div>
+            <div class="diverter" id="diverter"><span class="diverter-arm"></span><b>D-01</b></div>
+            <div class="reject-sensor" id="rejectSensor"><div class="reject-sensor-emitter"></div><div class="reject-sensor-beam"></div><div class="reject-sensor-emitter"></div><strong>LS-03</strong></div>
+            <div class="stand stand-left"></div><div class="stand stand-right"></div><div class="floor"></div>
+            <div class="motor-box"><b>M</b><span>DRV-01</span></div>
+            <div class="stage-hint">BLAUW = DOORVOER &nbsp; • &nbsp; ORANJE = AFVOER ↓</div>
+          </div>
+          <div class="readout-grid">
+            <div class="readout"><div>MOTORUITGANG</div><strong id="motorValue">FALSE</strong><small>bConveyorMotor</small></div>
+            <div class="readout"><div>DIVERTER</div><strong id="diverterValue">FALSE</strong><small>bDiverter</small></div>
+            <div class="readout"><div>PLC CYCLI</div><strong id="cycleValue">0</strong><small>nCycleCounter</small></div>
+          </div>
+        </section>
+        <div class="bottom-cards">
+          <section class="panel results-panel"><div class="overline">PROCESSTATISTIEKEN</div><h3>Productiestatus</h3>
+            <div class="stats-line"><div class="stat"><span>Doorgelaten</span><strong id="normalCount">0</strong><small>blauwe route</small></div><div class="stat"><span>Afgevoerd</span><strong id="rejectCount">0</strong><small>reject route</small></div><div class="stat"><span>Wachtrij</span><strong id="queueCount">0</strong><small>pakketten</small></div></div>
+          </section>
+          <section class="panel help-panel"><div class="overline">ZO WERKT DE SIMULATIE</div><h3>Sensor → PLC → Actuator</h3><p>LS-01 detecteert het type. De PLC zet D-01 aan voor oranje pakketten. De tweede band vervoert het pakket naar LS-03, die de aankomst bevestigt.</p></section>
+        </div>
+      </section>
+      <aside class="right-side">
+        <section class="panel connection-panel"><div class="overline">01 / CONNECTIE</div><h3>PLC-verbinding</h3>
+          <div class="profile-widget">
+            <label for="profileSelect">Verbindingsprofiel</label>
+            <div class="profile-line"><select id="profileSelect" aria-label="Selecteer PLC-profiel"></select><button class="btn ghost" id="profileEdit" type="button">Edit</button></div>
+            <p id="profileHint" class="profile-hint">Je selectie wordt bewaard voor de volgende keer.</p>
+          </div>
+          <div class="info-row"><span>Doel</span><code id="targetValue">—</code></div>
+          <div class="info-row"><span>Protocol</span><strong id="protocolValue">—</strong></div>
+          <div class="button-pair"><button class="btn primary" id="connectButton">● Verbinden</button><button class="btn ghost" id="disconnectButton">Verbreken</button></div>
+        </section>
+        <section class="panel action-panel"><div class="overline">02 / MACHINEBESTURING</div><h3>Virtuele drukknoppen</h3>
+          <div class="button-pair"><button class="btn start" id="startButton">▶ START</button><button class="btn stop" id="stopButton">■ STOP</button></div>
+          <div class="subsection-title">Pakketten toevoegen</div>
+          <div class="button-pair"><button class="btn parcel-blue" id="blueButton"><span class="parcel-icon blue"></span> Blauw pakket</button><button class="btn parcel-orange" id="orangeButton"><span class="parcel-icon orange"></span> Oranje pakket</button></div>
+          <label class="switch-row"><div><b>Automatische aanvoer</b><small>Wissel blauwe en oranje pakketten af</small></div><span class="toggle"><input id="autoFeedToggle" type="checkbox"><span></span></span></label>
+          <button class="btn ghost full-width" id="resetButton">↻ &nbsp; Reset pakketten &amp; tellers</button>
+          <p class="small-note">Reset wist alleen de virtuele wereld. De PLC-besturing blijft draaien totdat je STOP indrukt.</p>
+        </section>
+        <section class="panel io-panel"><div class="overline">03 / LIVE DIAGNOSTIEK</div><h3>PLC I/O monitor</h3><div id="symbolDiagnostics" class="symbol-diagnostics" aria-live="polite"></div><div id="ioRows"></div>
+          <div class="io-footer">Ingangen: simulator → PLC &nbsp;·&nbsp; Uitgangen: PLC → simulator</div>
+        </section>
+      </aside>
+    </main>
+    <section id="garageWorkspace" class="garage-workspace" hidden>
+      <section class="panel stage-panel garage-stage-panel">
+        <div class="section-title"><div><button id="garageBackHome" class="back-home" type="button">← Alle simulaties</button><div class="overline">INSTALLATIE 02 / BUILDING AUTOMATION</div><h2>Garagepoort <span class="h2muted">/ Automatische bediening</span></h2></div><span id="garageModeTag" class="mode-tag">Wachten...</span></div>
+        <p class="stage-description">Eén virtuele druktoets. De PLC bestuurt de openings- en sluitmotor; de simulator beheert de eindeloopcontacten.</p>
+        <div class="garage-scene" id="garageScene">
+          <div class="garage-wall"><div class="garage-header">GARAGE G-01</div><div class="garage-opening"><div id="garageDoor" class="garage-door"><div class="door-lamella"></div><div class="door-lamella"></div><div class="door-lamella"></div><div class="door-lamella"></div><div class="door-lamella"></div><div class="door-lamella"></div></div><div class="garage-track-left"></div><div class="garage-track-right"></div></div></div>
+          <div class="gate-limit gate-limit-open" id="garageLimitOpen"><span>LS-OPEN</span><b></b></div>
+          <div class="gate-limit gate-limit-closed" id="garageLimitClosed"><span>LS-CLOSED</span><b></b></div>
+          <div class="garage-floor"></div><div class="garage-position" id="garagePosition">GESLOTEN · 0%</div>
+        </div>
+        <div class="garage-readouts"><div class="readout"><div>MOTOR OPEN</div><strong id="gateOpenValue">FALSE</strong><small>bGateMotorOpen</small></div><div class="readout"><div>MOTOR SLUITEN</div><strong id="gateCloseValue">FALSE</strong><small>bGateMotorClose</small></div><div class="readout"><div>PLC CYCLI</div><strong id="gateCycleValue">0</strong><small>nGateCycleCounter</small></div></div>
+      </section>
+      <aside class="garage-controls">
+        <section class="panel"><div class="overline">01 / CONNECTIE</div><h3>PLC-verbinding</h3><div class="profile-widget"><label for="garageProfileSelect">Verbindingsprofiel</label>
+          <div class="profile-line"><select id="garageProfileSelect" aria-label="Selecteer PLC-profiel"></select><button class="btn ghost" id="garageProfileEdit" type="button">Edit</button></div></div>
+          <div class="info-row"><span>Doel</span><code id="garageTarget">—</code></div><div class="button-pair"><button class="btn primary" id="garageConnect">● Verbinden</button><button class="btn ghost" id="garageDisconnect">Verbreken</button></div><p class="small-note">LIVE: laad het garagepoortprogramma in TwinCAT. Verbreek eerst de transportbandverbinding.</p></section>
+        <section class="panel"><div class="overline">02 / BEDIENING</div><h3>Virtuele druktoets</h3><button id="garageButton" class="btn start full-width">● DRUKTOETS S-01</button><p class="small-note">De student bepaalt in TwinCAT hoe de poort reageert op deze druktoets.</p><div id="garageError" class="garage-error" hidden></div></section>
+        <section class="panel"><div class="overline">03 / LIVE I/O</div><h3>Sensoren en actuatoren</h3><div id="garageSymbolDiagnostics" class="symbol-diagnostics" aria-live="polite"></div><div id="garageIoRows"></div><p id="garageFault" class="garage-error" hidden>Motorconflict: beide richtingen actief. Beweging geblokkeerd.</p></section>
+      </aside>
+    </section>
+    <footer><span>PLC SIMULATION LAB · BETA 0.7</span><span id="footerStatus">Wachten op de desktopbridge…</span></footer>
+  </div>
+<div id="profileModal" class="profile-modal" hidden role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
+    <div class="profile-panel panel">
+      <div class="profile-heading"><h2 id="profileModalTitle">PLC-verbindingsprofielen</h2><button id="profileClose" type="button" class="btn ghost">Sluiten</button></div>
+      <p class="profile-hint">Maak een profiel voor thuis, school of een andere runtime. Verbreek eerst de actieve verbinding om profielen te wijzigen.</p>
+      <div class="profile-editor-layout"><div><label for="profileEditorList">Bewaarde profielen</label><select id="profileEditorList" size="6"></select><button type="button" id="profileNew" class="btn ghost full-width">+ Nieuw profiel</button></div>
+      <form id="profileForm"><label for="profileName">Profielnaam</label><input id="profileName" maxlength="60" required placeholder="Bijv. School UMRT">
+      <label for="profileNetId">AMS Net ID</label><input id="profileNetId" required spellcheck="false" placeholder="199.4.42.250.1.1">
+      <label for="profilePort">PLC ADS-poort</label><input id="profilePort" type="number" min="1" max="65535" required value="851">
+      <div class="profile-actions"><button type="submit" class="btn primary">Opslaan</button><button type="button" id="profileDelete" class="btn stop">Verwijderen</button></div></form></div>
+      <p id="profileError" class="profile-error" role="alert" hidden></p>
+    </div>
+  </div>
+  <script src="app.js"></script>
+  <script src="custom.js"></script>
+</body>
+</html>

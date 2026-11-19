@@ -1,0 +1,14 @@
+PROGRAM MAIN
+VAR
+    bTankStart : BOOL := FALSE;
+    bTankStop : BOOL := FALSE;
+    bTankLevelLow : BOOL := FALSE;
+    bTankLevelHigh : BOOL := FALSE;
+    bTankPressureHigh : BOOL := FALSE;
+    fTankPressure : REAL := 0.0;
+    bPumpIn : BOOL := FALSE;
+    bPumpOut : BOOL := FALSE;
+    rStart : R_TRIG;
+    bEnabled : BOOL := FALSE;
+    bFillPhase : BOOL := TRUE;
+END_VAR
