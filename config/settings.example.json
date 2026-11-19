@@ -1,0 +1,16 @@
+{
+  "ams_net_id": "127.0.0.1.1.1",
+  "ads_port": 851,
+  "pulse_ms": 250,
+  "symbols": {
+    "start": "MAIN.bStartButton",
+    "stop": "MAIN.bStopButton",
+    "sensor_entry": "MAIN.bSensorEntry",
+    "sensor_exit": "MAIN.bSensorExit",
+    "reject_type": "MAIN.bRejectType",
+    "sensor_reject": "MAIN.bSensorReject",
+    "motor": "MAIN.bConveyorMotor",
+    "diverter": "MAIN.bDiverter",
+    "counter": "MAIN.nCycleCounter"
+  }
+}

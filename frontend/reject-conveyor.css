@@ -1,0 +1,30 @@
+/* Additive perpendicular reject conveyor for the original Phase 2 scene. */
+/* Geometry is anchored to the existing belt and DIVERTER_X=0.66. */
+.conveyor-stage{height:405px}
+.belt-frame{top:24%;z-index:5}
+.sensor-assembly{top:10%}
+.diverter{top:27%;left:62.0%;z-index:10}
+/* The diverter arm spans the upper conveyor track; its tip meets the branch. */
+.diverter-arm{width:86px;height:11px;transform-origin:12% 50%;transform:rotate(-27deg)}
+.diverter.active .diverter-arm{transform:rotate(35deg)}
+.diverter b{margin-top:18px}
+.reject-conveyor{position:absolute;top:calc(24% + 44px);left:calc(9% + 82% * .66 - 38px);width:76px;height:215px;border:6px solid #71869c;border-radius:0 0 33px 33px;background:#0c1a2b;box-shadow:0 12px 29px #020713bd,inset 0 0 0 4px #26384b;z-index:2;overflow:hidden}
+.reject-track{position:absolute;inset:0 7px 7px;border-radius:0 0 25px 25px;overflow:hidden;background:#334759;border:1px solid #556b80}
+.reject-texture{position:absolute;inset:-32px 0 0;background:repeating-linear-gradient(0deg,#8095a4 0 2px,transparent 2px 32px);opacity:.68;animation:reject-belt-move 540ms linear infinite paused;will-change:transform}
+.conveyor-stage.running .reject-texture{animation-play-state:running}
+@keyframes reject-belt-move{to{transform:translateY(32px)}}
+.reject-roller{position:absolute;left:20px;width:24px;height:12px;border-radius:50%;background:radial-gradient(ellipse,#8db4c9 0 35%,#33546c 40% 72%,#d2e5eb 75%);z-index:3}
+.reject-roller-top{top:7px}.reject-roller-bottom{bottom:8px}
+.reject-direction{position:absolute;top:48%;left:50%;transform:translate(-50%,-50%);font-size:10px;font-weight:900;letter-spacing:1px;color:#b4cee0;text-shadow:0 1px 3px #122536;white-space:nowrap}
+.reject-package-layer{position:absolute;inset:0;z-index:8;pointer-events:none}
+.reject-package-layer .parcel{top:0;left:0}
+.reject-sensor{position:absolute;top:262px;left:calc(9% + 82% * .66 - 48px);width:96px;height:17px;z-index:11;display:flex;align-items:center;justify-content:space-between;filter:drop-shadow(0 0 5px #4daaff55);pointer-events:none}
+.reject-sensor-emitter{width:12px;height:21px;background:#64b7eb;border:2px solid #b5e4fe;border-radius:3px}
+.reject-sensor-beam{height:3px;flex:1;background:#6db7f1;opacity:.8}
+.reject-sensor.active .reject-sensor-beam{background:#ef696b;box-shadow:0 0 12px #ff6c6c;opacity:1}
+.reject-sensor strong{position:absolute;right:-1px;top:24px;font-size:10px;color:#9ac8eb}
+.reject-sensor.active strong{color:#ffafac}
+.stand{top:calc(24% + 65px);height:36px}
+.motor-box{left:20%;top:58%}
+.floor{bottom:25px}
+.stage-hint{bottom:10px}

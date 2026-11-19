@@ -1,0 +1,7 @@
+// Add to the declaration VAR block of PROGRAM MAIN, in a separate garage exercise project.
+    bGateButton         : BOOL := FALSE; // simulator input: one pushbutton
+    bGateLimitOpen      : BOOL := FALSE; // simulator input: fully open
+    bGateLimitClosed    : BOOL := TRUE;  // simulator input: fully closed
+    bGateMotorOpen      : BOOL := FALSE; // PLC output: raise door
+    bGateMotorClose     : BOOL := FALSE; // PLC output: lower door
+    nGateCycleCounter   : UDINT := 0;    // PLC output: heartbeat

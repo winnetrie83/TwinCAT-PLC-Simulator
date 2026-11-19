@@ -8,6 +8,7 @@
     "sensor_entry": "MAIN.bSensorEntry",
     "sensor_exit": "MAIN.bSensorExit",
     "reject_type": "MAIN.bRejectType",
+    "sensor_reject": "MAIN.bSensorReject",
     "motor": "MAIN.bConveyorMotor",
     "diverter": "MAIN.bDiverter",
     "counter": "MAIN.nCycleCounter"

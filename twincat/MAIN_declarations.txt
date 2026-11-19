@@ -1,15 +1,16 @@
 PROGRAM MAIN
 VAR
-    // Ingangen: uitsluitend onze Python-simulator schrijft deze symbolen.
+    // Ingangen: alleen de Python-simulator schrijft deze symbolen.
     bStartButton     : BOOL := FALSE;
     bStopButton      : BOOL := FALSE;
-    bSensorEntry     : BOOL := FALSE; // LS-01 onderbroken
-    bSensorExit      : BOOL := FALSE; // LS-02 onderbroken
-    bRejectType      : BOOL := FALSE; // oranje pakket aan LS-01
+    bSensorEntry     : BOOL := FALSE; // LS-01: pakket op invoerband
+    bSensorExit      : BOOL := FALSE; // LS-02: pakket op hoofduitgang
+    bRejectType      : BOOL := FALSE; // oranje pakket bij LS-01
+    bSensorReject    : BOOL := FALSE; // LS-03: pakket op afvoerband
 
-    // Uitgangen: uitsluitend het PLC-programma bestuurt deze.
-    bConveyorMotor   : BOOL := FALSE;
-    bDiverter        : BOOL := FALSE;
+    // Uitgangen: uitsluitend het TwinCAT-programma schrijft deze.
+    bConveyorMotor   : BOOL := FALSE; // gemeenschappelijke motor voor beide banden
+    bDiverter        : BOOL := FALSE; // sorteerklep naar afvoerband
 
     // Diagnostiek
     nCycleCounter    : UDINT := 0;
